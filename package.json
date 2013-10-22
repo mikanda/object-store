@@ -1,0 +1,30 @@
+{
+  "name": "object-store",
+  "version": "0.0.1",
+  "description": "Dynamic object store to manage remote ressources.",
+  "main": "test/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikanda/object-storage.git"
+  },
+  "keywords": [
+    "object",
+    "storage"
+  ],
+  "author": "mikanda IT Solutions <info@mikanda.de>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/mikanda/object-storage/issues"
+  },
+  "devDependencies": {
+    "jade": "~0.35.0",
+    "express": "~3.4.2",
+    "component-builder": "~0.10.0"
+  }
+}

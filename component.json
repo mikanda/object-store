@@ -1,0 +1,17 @@
+{
+  "name": "object-store",
+  "repo": "mikanda/object-store",
+  "version": "0.0.1",
+  "description": "Dynamic object store to manage remote ressources.",
+  "dependencies": {
+    "component/emitter": "1.1.0",
+    "component/each": "0.1.0"
+  },
+  "development": {
+    "chaijs/chai": "*",
+    "visionmedia/mocha": "*"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}

@@ -1,0 +1,15 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    link(href='/build.css', rel='stylesheet')
+  body
+    #mocha
+    script(src='/vendor/sinon-1.7.3.js')
+    script(src='/build.js')
+    script.
+      require('mocha');
+      mocha.setup('bdd');
+    script(src='/object-store.js')
+    script.
+      mocha.run();
