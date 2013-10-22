@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -121,7 +120,7 @@ Store.prototype.has = function(id){
 };
 
 /**
- * Remove model in heap, edits and all entry-collections
+ * Remove model from the store and emit remove event.
  */
 
 Store.prototype.destroy = function(id){
