@@ -45,14 +45,24 @@ Store.prototype.remove = function(id){
   var self = this;
   var object = this._store[id];
   object.refs -= 1;
-  if (object.refs === 0) {
-    if (object._timeout) {
-      clearTimeout(object._timeout);
+  remove();
+
+  /**
+   * Remove the object if refcount is 0.
+   */
+
+  function remove(notimeout) {
+    if (object.refs === 0) {
+      if (object._timeout) {
+        clearTimeout(object._timeout);
+        object._timeout = null;
+      }
+      if (notimeout) return self.destroy(id);
+      object._timeout = setTimeout(function(){
+        delete object._timeout;
+        remove(true);
+      }, self._timeout);
     }
-    object._timeout = setTimeout(function(){
-      delete object._timeout;
-      self.destroy(id);
-    }, this._timeout);
   }
 };
 
@@ -117,7 +127,7 @@ Store.prototype.get = function(ids, fetch, cb){
  */
 
 Store.prototype.has = function(id){
-  return !!this._store[id];
+  return this._store.hasOwnProperty(id);
 };
 
 /**
