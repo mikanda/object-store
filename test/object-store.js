@@ -45,13 +45,16 @@ describe('ObjectStore', function(){
         store.remove('1');
         expect(store._store['1']).to.not.equal(undefined);
         expect(store._store['1'].refs).to.equal(1);
+        expect(store.has('1')).to.be.true;
         store.remove('1');
         expect(store._store['1']).to.not.equal(undefined);
         expect(store._store['1'].refs).to.equal(0);
+        expect(store.has('1')).to.be.false;
         setTimeout(function(){
           expect(store._store['1']).to.not.equal(undefined);
           setTimeout(function(){
             expect(store._store['1']).to.equal(undefined);
+            expect(store.has('1')).to.be.false;
             done();
           }, 1);
         }, 499);

@@ -43,8 +43,12 @@ Store.prototype.push = function(id, object){
 Store.prototype.remove = function(id){
   var self = this;
   var object = this._store[id];
-  object.refs -= 1;
-  remove();
+
+  // removal is already scheduled if refcount is 0
+  if (object.refs > 0) {
+    object.refs -= 1;
+    remove();
+  }
 
   /**
    * Remove the object if refcount is 0.
@@ -126,7 +130,8 @@ Store.prototype.get = function(ids, fetch, cb){
  */
 
 Store.prototype.has = function(id){
-  return this._store.hasOwnProperty(id);
+  var object = this._store[id];
+  return (object || false) && object.refs > 0;
 };
 
 /**
