@@ -55,11 +55,11 @@ Store.prototype.remove = function(id){
    */
 
   function remove(notimeout) {
+    if (object._timeout) {
+      clearTimeout(object._timeout);
+      object._timeout = null;
+    }
     if (object.refs === 0) {
-      if (object._timeout) {
-        clearTimeout(object._timeout);
-        object._timeout = null;
-      }
       if (notimeout) return self.destroy(id);
       object._timeout = setTimeout(function(){
         delete object._timeout;
