@@ -116,7 +116,7 @@ Store.prototype.get = function(ids, fetch, cb){
         if (self.has(uncached[i])) {
 
           // overwrite given object with stored
-          object = self._store[uncached[i]];
+          object = self._store[uncached[i]].object;
         } else {
 
           // create new entry in the store
