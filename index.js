@@ -110,15 +110,23 @@ Store.prototype.get = function(ids, fetch, cb){
     // load uncached models by id from server
     fetch(uncached, function (err, res) {
       if (err) return cb.call(self, err);
-      each(res, function(o, i){
+      each(res, function(object, i){
 
-        // create new entry in the store
-        var e = { object: o, refs: 1 };
-        self._store[uncached[i]] = e;
+        // check if model has been loaded during own request
+        if (self.has(uncached[i])) {
+
+          // overwrite given object with stored
+          object = self._store[uncached[i]];
+        } else {
+
+          // create new entry in the store
+          var o = { object: object, refs: 1 };
+          self._store[uncached[i]] = o;
+        }
 
         // insert result models at right positions.
         var index = indices[i];
-        ids[index] = o;
+        ids[index] = object;
       });
       cb.call(self, null, ids);
     });
